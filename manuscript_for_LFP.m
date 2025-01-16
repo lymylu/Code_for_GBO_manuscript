@@ -9,13 +9,13 @@ condition_elec={'Left_1_S1_3.mat','Right_1_S1_3.mat','Left_75_S1_3.mat','Right_7
 datamat=matfile([basepath,'workspaceofLFP_for_manuscript.mat']);
 %% generate plot
 %% For Figure S2,S3 and Figure 4B-G Figure 5B-G
-varsuffix='_rearrange_correct';
+varsuffix='_rearrange_correct_blcorrect';
 figsavesuffix='rearrange';
 tmpvar=eval(['datamat.ERPsummary_laser',varsuffix]);
 figure;
 plotERP_amongdepth(tmpvar,{'Left High','Right High','Left Low','Right Low'},subjectnum,lfpt,[-0.2,0.5],[-200,50],[1:16],'groupdepthaverage','overlap',[1,10]);
-savefig(gcf,fullfile(basepath,'Figurenew',['ERP_laser_',figsavesuffix,'_averagedepth.fig'])); % Figure 4B
-exportgraphics(gcf,fullfile(basepath,'Figurenew',['ERP_laser_',figsavesuffix,'_averagedepth.eps']),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
+% savefig(gcf,fullfile(basepath,'Figurenew',['ERP_laser_',figsavesuffix,'_averagedepth.fig'])); % Figure 4B
+% exportgraphics(gcf,fullfile(basepath,'Figurenew',['ERP_laser_',figsavesuffix,'_averagedepth.eps']),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
 % plot the rearranged data averaged from all channels and trials for each condition.
 channelindex=[2,5,8,11,14];
 figure;
@@ -23,60 +23,60 @@ for i=1:5
 subplot(1,5,i);plotERP_amongdepth(tmpvar,{'Left High','Right High','Left Low','Right Low'},subjectnum,lfpt,[-0.2,0.5],[-300,100],channelindex(i),'groupdepthaverage','overlap',[1,10]);
 legend({'Left High','Righ High','Left Low','Right Low'});
 end
-savefig(gcf,fullfile(basepath,'Figurenew',['ERP_laser_',figsavesuffix,'_amongdepth.fig'])); % Figure S2A
-exportgraphics(gcf,fullfile(basepath,'Figurenew',['ERP_laser_',figsavesuffix,'_amongdepth.eps']),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
+% savefig(gcf,fullfile(basepath,'Figurenew',['ERP_laser_',figsavesuffix,'_amongdepth.fig'])); % Figure S2A
+% exportgraphics(gcf,fullfile(basepath,'Figurenew',['ERP_laser_',figsavesuffix,'_amongdepth.eps']),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
 tmpvar=eval(['datamat.ERPsummary_elec',varsuffix]);
 figure;
 plotERP_amongdepth(tmpvar,{'Left High','Right High','Left Low','Right Low'},subjectnum,lfpt,[-0.1,0.3],[-300,100],[1:16],'groupdepthaverage','overlap',[1,10]);
-savefig(gcf,fullfile(basepath,'Figurenew',['ERP_elec_',figsavesuffix,'_averagedepth.fig'])); % Figure 5E
-exportgraphics(gcf,fullfile(basepath,'Figurenew',['ERP_elec_',figsavesuffix,'_averagedepth.eps']),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
+% savefig(gcf,fullfile(basepath,'Figurenew',['ERP_elec_',figsavesuffix,'_averagedepth.fig'])); % Figure 5E
+% exportgraphics(gcf,fullfile(basepath,'Figurenew',['ERP_elec_',figsavesuffix,'_averagedepth.eps']),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
 figure;
 for i=1:5
 subplot(1,5,i)
 plotERP_amongdepth(tmpvar,{'Left High','Right High','Left Low','Right Low'},subjectnum,lfpt,[-0.1,0.3],[-400,100],channelindex(i),'groupdepthaverage','overlap',[1,10]);
 legend({'Left High','Righ High','Left Low','Right Low'});
 end
-savefig(gcf,fullfile(basepath,'Figurenew',['ERP_elec_',figsavesuffix,'_amongdepth.fig'])); % Figure S3A
-exportgraphics(gcf,fullfile(basepath,'Figurenew',['ERP_elec_',figsavesuffix,'_amongdepth.eps']),'ContentType','Vector');
+% savefig(gcf,fullfile(basepath,'Figurenew',['ERP_elec_',figsavesuffix,'_amongdepth.fig'])); % Figure S3A
+% exportgraphics(gcf,fullfile(basepath,'Figurenew',['ERP_elec_',figsavesuffix,'_amongdepth.eps']),'ContentType','Vector');
 
 tmpvar=eval(['datamat.Specsummary_laser',varsuffix]);
 plotSpec_amongdepth(tmpvar,{'Left High','Right High','Left Low','Right Low'},subjectnum,lfpt,0:100,depth,[-0.2,0.5],[0,50],[-40,120],[1:16],'groupdepthaverage',[1,10]);
 colormap jet;
-savefig(gcf,fullfile(basepath,'Figurenew',['Spec_laser_',figsavesuffix,'_averagedepth.fig'])); %Figure 4E
-exportgraphics(gcf,fullfile(basepath,'Figurenew',['Spec_laser_',figsavesuffix,'_averagedepth.eps']),'ContentType','Vector');
+% savefig(gcf,fullfile(basepath,'Figurenew',['Spec_laser_',figsavesuffix,'_averagedepth.fig'])); %Figure 4E
+% exportgraphics(gcf,fullfile(basepath,'Figurenew',['Spec_laser_',figsavesuffix,'_averagedepth.eps']),'ContentType','Vector');
 figure;
 for i=1:5
 plotSpec_amongdepth(tmpvar,{'Left High','Right High','Left Low','Right Low'},subjectnum,lfpt,0:100,depth,[-0.2,0.5],[0,50],[-40,120],channelindex(i),'groupdepthaverage',[1,10]);
 colormap jet;
-savefig(gcf,fullfile(basepath,'Figurenew',['Spec_laser_',figsavesuffix,'_depth_',num2str(channelindex(i)*100),'.fig']));%Figure S3B
-exportgraphics(gcf,fullfile(basepath,'Figurenew',['Spec_laser_',figsavesuffix,'_depth_',num2str(channelindex(i)*100),'.eps']),'ContentType','Vector');
+% savefig(gcf,fullfile(basepath,'Figurenew',['Spec_laser_',figsavesuffix,'_depth_',num2str(channelindex(i)*100),'.fig']));%Figure S3B
+% exportgraphics(gcf,fullfile(basepath,'Figurenew',['Spec_laser_',figsavesuffix,'_depth_',num2str(channelindex(i)*100),'.eps']),'ContentType','Vector');
 end
 plotSpec_amongdepth(tmpvar,{'Left High','Right High','Left Low','Right Low'},subjectnum,lfpt,0:100,depth,[-0.2,0.5],[50,100],[-1,3],[1:16],'groupdepthaverage',[1,10]);
 colormap jet;
-savefig(gcf,fullfile(basepath,'Figurenew',['GBO_laser_',figsavesuffix,'_averagedepth.fig'])); %Figure 4E
-exportgraphics(gcf,fullfile(basepath,'Figurenew',['GBO_laser_',figsavesuffix,'_averagedepth.eps']),'ContentType','Vector');
+% savefig(gcf,fullfile(basepath,'Figurenew',['GBO_laser_',figsavesuffix,'_averagedepth.fig'])); %Figure 4E
+% exportgraphics(gcf,fullfile(basepath,'Figurenew',['GBO_laser_',figsavesuffix,'_averagedepth.eps']),'ContentType','Vector');
 
 figure;
 for i=1:5
 plotSpec_amongdepth(tmpvar,{'Left High','Right High','Left Low','Right Low'},subjectnum,lfpt,0:100,depth,[-0.2,0.5],[50,100],[-1,3],channelindex(i),'groupdepthaverage',[1,10]);
 colormap jet;
-savefig(gcf,fullfile(basepath,'Figurenew',['GBO_laser_rearrange_depth_',num2str(channelindex(i)*100),'.fig']));%Figure S3B
-exportgraphics(gcf,fullfile(basepath,'Figurenew',['GBO_laser_rearrange_depth_',num2str(channelindex(i)*100),'.eps']),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
+% savefig(gcf,fullfile(basepath,'Figurenew',['GBO_laser_rearrange_depth_',num2str(channelindex(i)*100),'.fig']));%Figure S3B
+% exportgraphics(gcf,fullfile(basepath,'Figurenew',['GBO_laser_rearrange_depth_',num2str(channelindex(i)*100),'.eps']),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
 end
 % generate plot Specsummary_elec 
 tmpvar=eval(['datamat.Specsummary_elec',varsuffix]);
 plotSpec_amongdepth(tmpvar,{'Left High','Right High','Left Low','Right Low'},subjectnum,lfpt,0:100,depth,[-0.1,0.3],[0,100],[-200,600],[1:16],'groupdepthaverage',[1,10]);%%
 colormap jet;
-savefig(gcf,fullfile(basepath,'Figurenew',['Spec_elec_',figsavesuffix,'_averagedepth.fig'])); %Figure 5E
-exportgraphics(gcf,fullfile(basepath,'Figurenew',['Spec_elec_',figsavesuffix,'_averagedepth.eps']),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
+% savefig(gcf,fullfile(basepath,'Figurenew',['Spec_elec_',figsavesuffix,'_averagedepth.fig'])); %Figure 5E
+% exportgraphics(gcf,fullfile(basepath,'Figurenew',['Spec_elec_',figsavesuffix,'_averagedepth.eps']),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
 channelindex=[2,5,8,11,14];
 %
 figure;
 for i=1:5
 plotSpec_amongdepth(tmpvar,{'Left High','Right High','Left Low','Right Low'},subjectnum,lfpt,0:100,depth,[-0.1,0.2],[0,100],[-300,900],channelindex(i),'groupdepthaverage',[1,10]);%%
 colormap jet;
-savefig(gcf,fullfile(basepath,'Figurenew',['Spec_elec_',figsavesuffix,'_depth_',num2str(channelindex(i)*100),'.fig']));%Figure S4B
-exportgraphics(gcf,fullfile(basepath,'Figurenew',['Spec_elec_',figsavesuffix,'_depth_',num2str(channelindex(i)*100),'.eps']),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
+% savefig(gcf,fullfile(basepath,'Figurenew',['Spec_elec_',figsavesuffix,'_depth_',num2str(channelindex(i)*100),'.fig']));%Figure S4B
+% exportgraphics(gcf,fullfile(basepath,'Figurenew',['Spec_elec_',figsavesuffix,'_depth_',num2str(channelindex(i)*100),'.eps']),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
 end
 %% timepoint anova to find the location and intensity effects on the ERP and SPEC data
    mypool = parpool;
@@ -90,94 +90,22 @@ savedatamat(datamat,{'fERPsummary_laser_rearrange_correct_all','fERPsummary_elec
 %%
 fdr_correct(datamat.pERPsummary_laser_rearrange_correct_all,[],lfpt,[-0.2,0.15;0.15,0.5],1); % Figure 4D
 colormap gray; 
-savefig(gcf,fullfile(basepath,'Figurenew','pERPsummary_laser_rearrange_correct_all.fig'));
-exportgraphics(gcf,fullfile(basepath,'Figurenew','pERPsummary_laser_rearrange_correct_all.eps'),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
+%savefig(gcf,fullfile(basepath,'Figurenew','pERPsummary_laser_rearrange_correct_all.fig'));
+%exportgraphics(gcf,fullfile(basepath,'Figurenew','pERPsummary_laser_rearrange_correct_all.eps'),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
 fdr_correct(datamat.pSpecsummary_laser_rearrange_correct,[],lfpt,[-0.2,0.15;0.15,0.5],1);% Figure 4G
 colormap gray;
-savefig(gcf,fullfile(basepath,'Figurenew','pGBOsummary_laser_rearrange_correct_all.fig'));
-exportgraphics(gcf,fullfile(basepath,'Figurenew','pGBOsummary_laser_rearrange_correct_all.eps'),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
+%savefig(gcf,fullfile(basepath,'Figurenew','pGBOsummary_laser_rearrange_correct_all.fig'));
+%exportgraphics(gcf,fullfile(basepath,'Figurenew','pGBOsummary_laser_rearrange_correct_all.eps'),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
 %%
-fdr_correct(datamat.pERPsummary_elec_rearrange_correct_all,[],lfpt,[-0.1,0.012;0.012,0.03;0.03,0.3],1);% Figure 5D
+fdr_correct(datamat.pERPsummary_elec_rearrange_correct_all,[],lfpt,[-0.1,0.01;0.01,0.03;0.03,0.3],1);% Figure 5D
 colormap gray;
-savefig(gcf,fullfile(basepath,'Figurenew','pERPsummary_elec_rearrange_correct_all.fig'));
-exportgraphics(gcf,fullfile(basepath,'Figurenew','pERPsummary_elec_rearrange_correct_all.eps'),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
-fdr_correct(datamat.pSpecsummary_elec_rearrange_correct_all,[],lfpt,[-0.1,0.012;0.012,0.03;0.03,0.3],1);% Figure 5G
+%savefig(gcf,fullfile(basepath,'Figurenew','pERPsummary_elec_rearrange_correct_all.fig'));
+%exportgraphics(gcf,fullfile(basepath,'Figurenew','pERPsummary_elec_rearrange_correct_all.eps'),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
+fdr_correct(datamat.pSpecsummary_elec_rearrange_correct_all,[],lfpt,[-0.1,0.01;0.01,0.03;0.03,0.3],1);% Figure 5G
 colormap gray;
-savefig(gcf,fullfile(basepath,'Figurenew','pGBOsummary_elec_rearrange_correct_all.fig'));
-exportgraphics(gcf,fullfile(basepath,'Figurenew','pGBOsummary_elec_rearrange_correct_all.eps'),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
+%savefig(gcf,fullfile(basepath,'Figurenew','pGBOsummary_elec_rearrange_correct_all.fig'));
+%exportgraphics(gcf,fullfile(basepath,'Figurenew','pGBOsummary_elec_rearrange_correct_all.eps'),'ContentType','Vector');%% plot the rearranged data averaged from all channels and trials for each condition.
 %%
-
- % % % % % % 
-function Loaddatatoworkspace(loadfilename,subjectnum,condition,depth,lfpt,lfpf,savename,type,option,descriptionfile)
-global datamat
-switch option
-    case 'normal'
-for i=1:length(condition)
-tmp=cellfun(@(x) Loaddata(loadfilename,condition{i},x,type),subjectnum,'UniformOutput',0);
-tmp=cellfun(@(x) basecorrect(x,lfpt,-0.5,0,'Subtract'),tmp,'UniformOutput',0); %  basecorrect from 0.5s before stimulus
-if strcmp(type,'origin')
-    tmp{3}=cat(2,nan([size(tmp{3},1),2,size(tmp{3},3)]),tmp{3});
-     tmp{4}(:,11,:)=(tmp{4}(:,10,:)+tmp{4}(:,12,:))/2 ;%  rat 9 1 2 channel bad, rat10 11 channel bad rat10_2 4 channel bad rat15_3 4 6 channel bad
-    tmp{5}(:,4,:)= (tmp{5}(:,3,:)+tmp{5}(:,5,:))/2 ;
-     tmp{13}(:,4,:)=(tmp{13}(:,3,:)+tmp{13}(:,5,:))/2 ;
-     tmp{13}(:,6,:)=(tmp{13}(:,5,:)+tmp{13}(:,7,:))/2 ;
-    tmp=cellfun(@(x) mean(x,3),tmp,'UniformOutput',0);
-    data=cell2mat(tmp);
-    try
-    datasummary{i}=reshape(data,length(lfpt),length(depth),length(subjectnum));
-    catch
-        a=1;
-    end
-elseif strcmp(type,'Spec')
-    tmp{3}=cat(3,nan([size(tmp{3},1),size(tmp{3},2),2,size(tmp{3},4)]),tmp{3});
-    tmp{4}(:,:,11,:)=(tmp{4}(:,:,10,:)+tmp{4}(:,:,12,:))/2 ;%  rat 9 1 2 channel bad, rat10 11 channel bad rat10_2 4 channel bad rat15_3 4 6 channel bad
-    tmp{5}(:,:,4,:)= (tmp{5}(:,:,3,:)+tmp{5}(:,:,5,:))/2 ;
-    tmp{13}(:,:,4,:)=(tmp{13}(:,:,3,:)+tmp{13}(:,:,5,:))/2 ;
-    tmp{13}(:,:,6,:)=(tmp{13}(:,:,5,:)+tmp{13}(:,:,7,:))/2 ;
-    tmp=cellfun(@(x) mean(x,4),tmp,'UniformOutput',0);
-    data=cell2mat(tmp);
-    datasummary{i}=reshape(data,length(lfpt),length(lfpf),length(subjectnum),length(depth));
-    datasummary{i}=permute(datasummary{i},[1,2,4,3]);
-end
-end
- savedatamat(datamat,{savename},{datasummary});
-    case 'rearrange'
-        m=1;order=[1,3,2,4];
-        for i=1:2
-        [tmp1,eventindex1]=cellfun(@(x) Loaddata(loadfilename,condition{i},x,type),subjectnum,'UniformOutput',0);
-        [tmp2,eventindex2]=cellfun(@(x) Loaddata(loadfilename,condition{i+2},x,type),subjectnum,'UniformOutput',0);
-        [tmplow,tmphigh]=cellfun(@(x,y,z,n,m) Rearrange('laserdescription.xlsx',x,y,z,n,m),tmp1,tmp2,eventindex1,eventindex2,subjectnum,'UniformOutput',0);
-        clear tmp1 tmp2
-        intensity={'low','high'};
-          for k=1:2
-               tmp=eval(['tmp',intensity{k}]);
-               tmp=cellfun(@(x) basecorrect(x,lfpt,-0.5,0,'Subtract'),tmp,'UniformOutput',0); %  basecorrect from 0.5s before stimulus
-               if strcmp(type,'origin')
-               tmp{3}=cat(2,nan([size(tmp{3},1),2,size(tmp{3},3)]),tmp{3});
-               tmp{4}(:,11,:)=(tmp{4}(:,10,:)+tmp{4}(:,12,:))/2 ;%  rat 9 1 2 channel bad, rat10 11 channel bad rat10_2 4 channel bad rat15_3 4 6 channel bad
-               tmp{5}(:,4,:)= (tmp{5}(:,3,:)+tmp{5}(:,5,:))/2 ;
-               tmp{13}(:,4,:)=(tmp{13}(:,3,:)+tmp{13}(:,5,:))/2 ;
-               tmp{13}(:,6,:)=(tmp{13}(:,5,:)+tmp{13}(:,7,:))/2 ;
-                tmp=cellfun(@(x) mean(x,3),tmp,'UniformOutput',0);
-                data=cell2mat(tmp);
-                datasummary=reshape(data,length(lfpt),length(depth),length(subjectnum));
-               elseif strcmp(type,'Spec')
-                    tmp{3}=cat(3,nan([size(tmp{3},1),size(tmp{3},2),2,size(tmp{3},4)]),tmp{3});
-                    tmp{4}(:,:,11,:)=(tmp{4}(:,:,10,:)+tmp{4}(:,:,12,:))/2 ;%  rat 9 1 2 channel bad, rat10 11 channel bad rat10_2 4 channel bad rat15_3 4 6 channel bad
-                     tmp{5}(:,:,4,:)= (tmp{5}(:,:,3,:)+tmp{5}(:,:,5,:))/2 ;
-                     tmp{13}(:,:,4,:)=(tmp{13}(:,:,3,:)+tmp{13}(:,:,5,:))/2 ;
-                     tmp{13}(:,:,6,:)=(tmp{13}(:,:,5,:)+tmp{13}(:,:,7,:))/2 ;
-                    tmp=cellfun(@(x) mean(x,4),tmp,'UniformOutput',0);
-                    data=cell2mat(tmp);
-                    datasummary=reshape(data,length(lfpt),length(lfpf),length(subjectnum),length(depth));
-                    datasummary=permute(datasummary,[1,2,4,3]);
-               end
-            savedatamat(datamat,{[savename,'(1,',num2str(order(m)),')']},{{datasummary}});
-            m=m+1;
-          end      
-        end
-end
-end
  function [datahigh,datalow]=Rearrange(filename,dataup,datadown,eventup,eventdown,subject)
  try   
  [a,b]=xlsread(fullfile(subject,filename));
@@ -605,25 +533,15 @@ if option
     adddepthline(timeband);
     subplot(2,3,2);imagesc(lfpt,1:16,P_side');xlim(timeband);caxis([0,0.05]);title('Side P'); adddepthline(timeband);set(gca,'FontSize',14);
     subplot(2,3,3);imagesc(lfpt,1:16,P_interaction');xlim(timeband);caxis([0,0.05]);title('Side*Intensity P'); adddepthline(timeband);set(gca,'FontSize',14);
-    try
-    fERPsummary{1}=fERPsummary{1}(index,:);
-    fERPsummary{2}=fERPsummary{2}(index,:);
-    fERPsummary{3}=fERPsummary{3}(index,:);
-    end
 else
     timeband=reshape(timeband,[],1);
     timeband=[min(timeband),max(timeband)];
-    figure; subplot(2,3,1);imagesc(lfpt,1:16,pERPsummary{1}');xlim(timeband);caxis([0,0.05]);title('Intensity P'); adddepthline(timeband);set(gca,'FontSize',14);
-    subplot(2,3,2);imagesc(lfpt,1:16,pERPsummary{2}');xlim(timeband);caxis([0,0.05]);title('Side P'); adddepthline(timeband);set(gca,'FontSize',14);
-    subplot(2,3,3);imagesc(lfpt,1:16,pERPsummary{3}');xlim(timeband);caxis([0,0.05]);title('Side*Intensity P'); adddepthline(timeband);set(gca,'FontSize',14);
+    figure; subplot(1,3,1);imagesc(lfpt,1:16,pERPsummary{1}');xlim(timeband);caxis([0,0.05]);title('Intensity P'); adddepthline(timeband);set(gca,'FontSize',14);
+    subplot(1,3,2);imagesc(lfpt,1:16,pERPsummary{2}');xlim(timeband);caxis([0,0.05]);title('Side P'); adddepthline(timeband);set(gca,'FontSize',14);
+    subplot(1,3,3);imagesc(lfpt,1:16,pERPsummary{3}');xlim(timeband);caxis([0,0.05]);title('Side*Intensity P'); adddepthline(timeband);set(gca,'FontSize',14);
 end
     timeband=reshape(timeband,[],1);
     timeband=[min(timeband),max(timeband)];
-    try
-  subplot(2,3,4);imagesc(lfpt,1:16,fERPsummary{1}');xlim(timeband);caxis([0,20]);title('Intensity P'); adddepthline(timeband);set(gca,'FontSize',14);
-    subplot(2,3,5);imagesc(lfpt,1:16,fERPsummary{2}');xlim(timeband);caxis([0,20]);title('Side P'); adddepthline(timeband);set(gca,'FontSize',14);
-    subplot(2,3,6);imagesc(lfpt,1:16,fERPsummary{3}');xlim(timeband);caxis([0,20]);title('Side*Intensity P'); adddepthline(timeband);set(gca,'FontSize',14);
-    end
     end
 function len=channellength(x)
 if ischar(x)
